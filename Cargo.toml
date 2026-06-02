@@ -1,0 +1,32 @@
+[package]
+name = "rsomics-sc-cell-cycle"
+version = "0.1.0"
+description = "Per-cell cell-cycle phase scoring (S_score, G2M_score, phase) from a single-cell matrix — matches scanpy tl.score_genes_cell_cycle(random_state=0) value-exactly"
+edition = "2024"
+rust-version = "1.91"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/omics-rust/rsomics-sc-cell-cycle"
+authors = ["Zane Leong <efd@live.com>"]
+
+[[bin]]
+name = "rsomics-sc-cell-cycle"
+path = "src/main.rs"
+
+[lib]
+name = "rsomics_sc_cell_cycle"
+path = "src/lib.rs"
+doctest = false
+
+[dependencies]
+rsomics-common = { version = "0.6", features = ["rayon"] }
+rsomics-help = { version = "0.3" }
+rsomics-sc-score-genes = { version = "0.1" }
+clap = { version = "4", features = ["derive"] }
+ryu = "1"
+
+[dev-dependencies]
+criterion = { version = "0.7", default-features = false, features = ["cargo_bench_support"] }
+
+[[bench]]
+name = "bench"
+harness = false
